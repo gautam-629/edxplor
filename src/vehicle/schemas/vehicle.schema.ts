@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose';
-
+import * as mongoose from 'mongoose'; 
 export interface Vehicle extends Document {
   make: string;
   vehicleModel: string; 
@@ -7,6 +7,7 @@ export interface Vehicle extends Document {
   registrationNumber: string;
   status: 'active' | 'maintenance' | 'retired';
   location: string;
+  driver:any
 }
 
 export const VehicleSchema: Schema<Vehicle> = new Schema<Vehicle>({
@@ -16,6 +17,7 @@ export const VehicleSchema: Schema<Vehicle> = new Schema<Vehicle>({
   registrationNumber: String,
   status: { type: String, enum: ['active', 'maintenance', 'retired'],default: 'active' },
   location: String,
+  driver: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 const VehicleModel: Model<Vehicle> = model<Vehicle>('Vehicle', VehicleSchema);

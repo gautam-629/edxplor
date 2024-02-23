@@ -5,6 +5,7 @@ import { Vehicle } from './schemas/vehicle.schema';
 import { CreateVehicleDto, UpdateVehicleDto } from './dto/create-vehicle.dto';
 import { ErrorHandler } from 'src/common/errorHandler';
 import { CommmonError } from 'src/common/enums/common.enum';
+import * as mongoose from 'mongoose';
 
 
 @Injectable()
@@ -72,6 +73,33 @@ export class VehicleService {
     } catch (error) {
       ErrorHandler(CommmonError.SOMETHING_WRONG, error.message);
     }
-    
+  }
+
+  
+  async assignDriver(id: string, driverIdObject: any): Promise<Vehicle> {
+    try {
+      const vehicle = await this.vehicleModel.findById(id).exec();
+      if (!vehicle) {
+        throw new NotFoundException('Vehicle not found');
+      }
+      const driverId = driverIdObject.driverId; 
+      vehicle.driver = new mongoose.Types.ObjectId(driverId); 
+      return await vehicle.save();
+    } catch (error) {
+      ErrorHandler(CommmonError.SOMETHING_WRONG, error.message);
+    }   
+}
+
+  
+  async maintenance(id: string): Promise<Vehicle> {
+    try {
+      const vehicle = await this.vehicleModel.findByIdAndUpdate(id,{ status: 'maintenance' }, { new: true }).exec();
+    if (!vehicle) {
+      throw new NotFoundException('Vehicle not found');
+    }
+       return vehicle;
+    } catch (error) {
+      ErrorHandler(CommmonError.SOMETHING_WRONG, error.message);
+    }   
   }
 }

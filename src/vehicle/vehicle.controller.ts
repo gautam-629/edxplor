@@ -33,4 +33,15 @@ export class VehicleController {
   delete(@Param('id') id: string): Promise<Vehicle> {
     return this.vehicleService.delete(id);
   }
+
+  @Post(':id/assign-driver')
+  assignDriver(@Param('id') id: string,@Body() driverId :string){
+       return this.vehicleService.assignDriver(id,driverId);
+  }
+
+  @Post(':id/maintenance')
+  maintenance(@Param('id') id:string){
+       return this.vehicleService.maintenance(id);
+  }
+  
 }
