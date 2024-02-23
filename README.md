@@ -1,73 +1,80 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+>I am confident that I can complete the task of developing a NESTjs API with CRUD operations for managing Vehicles, including authentication, data validation, error handling, security measures, and additional functionalities such as allowing marking a vehicle as active, under maintenance, or retired, as well as providing endpoints for assigning drivers and managing maintenance tasks for each vehicle.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## To install dependencies, run:
+   > **npm install**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## To start the development server, run:
+  > **npm run start:dev**
 
-## Description
+## To set Environment Variables
+  > make **.env** file and add PORT=5000
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Following are the endPoints of all apis
 
-## Installation
+1. For Register (http://localhost:5000/auth/register) POST Request
 
-```bash
-$ npm install
+``
+{
+	"email":"gautambinod9@gmail.com",
+	 "password":"lkjhg"
+}
+``
+
+2. For Login(http://localhost:5000/auth/login) POST Request
+
+``
+{
+	"email":"gautambinod9@gmail.com",
+	 "password":"lkjhg"
+}
+``
+> **Expected:**
+```
+{
+	"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhdXRhbWJpbm9kOUBnbWFpbC5jb20iLCJzdWIiOiI2NWQ4Yzg5NWI1ZTY3YWIzNjBmOWI0OTAiLCJpYXQiOjE3MDg3MDYwMTUsImV4cCI6MTcwODc0MjAxNX0.NbJawEl_ALvm3jqBXbsle6hZ_N-KkpuBJxsJh3vEwDY"
+}
 ```
 
-## Running the app
+3. For createVehicle(http://localhost:5000/vehicles) POST Request
+```
+{
+  "make": "Toyota",
+  "vehicleModel": "Camry",
+  "year": 2022,
+  "registrationNumber": "ABC1236",
+  "status": "active",
+  "location": "Parking Lot A"
+}
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+4. For get all vehicles(http://localhost:5000/vehicles) GET Request
 
-```bash
-# unit tests
-$ npm run test
+5. For get single vehicles(http://localhost:5000/vehicles/65d8ab3c91c463c6a74d2a0d) GET Request
 
-# e2e tests
-$ npm run test:e2e
+6. For updateVehicle (http://localhost:5000/vehicles/65d8ab3c91c463c6a74d2a0d) Patch Request
+```
+{
+  "make": "Toyot",
+  "vehicleModel": "Camry",
+  "year": 2022,
+  "registrationNumber": "ABC123",
+  "status": "active",
+  "location": "Parking Lot A"
+}
 
-# test coverage
-$ npm run test:cov
 ```
 
-## Support
+7. For DeleteVehicle(http://localhost:5000/vehicles/65d8ab3c91c463c6a74d2a0d) DELETE Reuest
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+8. For Assign Driver(http://localhost:5000/vehicles/65d8bd33516bb4992a1761c9/assign-driver) POST Request
 
-## Stay in touch
+```
+{
+	"driverId":"65d8bf341909787ef43bddf3"
+}
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+9. For maintenance Vehicle(http://localhost:5000/vehicles/65d8bd33516bb4992a1761c9/maintenance) POST Request
 
-## License
-
-Nest is [MIT licensed](LICENSE).
+> **NOTE**:"All endpoints except for Login and Register require protection. When a user logs in, they receive an access token. This token should be included in the Authorization Header to access all endpoints."
