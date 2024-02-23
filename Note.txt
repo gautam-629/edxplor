@@ -1,0 +1,8 @@
+installing
+-> nest new myApp
+
+nest g module user
+nest g controller user
+nest g service user
+
+https://github.dev/bitfumes/nestjs-course-2022
