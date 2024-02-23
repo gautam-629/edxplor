@@ -14,7 +14,7 @@ export const VehicleSchema: Schema<Vehicle> = new Schema<Vehicle>({
   vehicleModel: String, 
   year: Number,
   registrationNumber: String,
-  status: { type: String, enum: ['active', 'maintenance', 'retired'] },
+  status: { type: String, enum: ['active', 'maintenance', 'retired'],default: 'active' },
   location: String,
 });
 
