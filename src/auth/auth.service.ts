@@ -29,7 +29,6 @@ export class AuthService {
          const hashedPassword = await bcrypt.hash(password, saltOrRounds);
          // Create and save the new user
            const user = new this.userModel({ email:email, password: hashedPassword });
-           
            return await user.save();
             } catch (error) {
                 ErrorHandler(CommmonError.SOMETHING_WRONG, error.message);
