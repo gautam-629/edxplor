@@ -32,7 +32,7 @@ export class AuthService {
            
            return await user.save();
             } catch (error) {
-                ErrorHandler(CommmonError.NOT_CREATED, error.message);
+                ErrorHandler(CommmonError.SOMETHING_WRONG, error.message);
             }
            
           }

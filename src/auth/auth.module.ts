@@ -9,10 +9,11 @@ import { jwtConstants } from 'src/common/constants';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+    imports: [
+        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
     JwtModule.register({
         secret: jwtConstants.secret,
-        signOptions: { expiresIn: '60s' },
+        signOptions: { expiresIn: '10h' },
       }),
 ],
     controllers: [AuthController],
